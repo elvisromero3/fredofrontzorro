@@ -1,0 +1,17 @@
+<nz-card>
+  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()" autocomplete="off" >
+      <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your username!">
+          <input type="text" nz-input formControlName="userName" placeholder="Username" autocomplete="off"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <input type="password" nz-input formControlName="password" placeholder="Password" autocomplete="off"/>
+      
+        </nz-form-control>
+      </nz-form-item>
+      <button nz-button class="login-form-button login-form-margin" nzType="primary" >Log in</button>
+  </form>
+</nz-card>
+
