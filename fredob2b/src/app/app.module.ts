@@ -15,6 +15,7 @@ import  { NgZorroAntdModule} from '../app/shared/ng-zorro-antd/ng-zorro-antd.mod
 import { ApiModule } from './services/api/fredob2b/api.module';
 import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
+import { AuthGuard } from './shared/auth.guard';
 
 registerLocaleData(en);
 
@@ -37,7 +38,8 @@ registerLocaleData(en);
   
   ],
   providers: [
-    { provide: NZ_I18N, useValue: en_US }
+    { provide: NZ_I18N, useValue: en_US },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
