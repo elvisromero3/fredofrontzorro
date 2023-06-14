@@ -1,1 +1,19 @@
-<p>create works!</p>
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="12" nzRequired nzFor="note">Category Name</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please input category name!">
+        <input id="note" type="text" nz-input formControlName="categoryName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="12" nzFor="gender" nzRequired>Description</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please input description">
+        <input id="note" type="text" nz-input formControlName="description" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzSpan]="12" [nzOffset]="5">
+        <button nz-button nzType="primary">Submit</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>

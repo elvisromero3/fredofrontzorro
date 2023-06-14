@@ -1,0 +1,19 @@
+<button nz-button nzType="primary" (click)="new()">New</button>
+<nz-table >
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of categoryList">
+        <td> {{ data.description }}</td>
+        <td>
+          <a>Action 一 </a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a>Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>

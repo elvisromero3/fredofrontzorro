@@ -11,6 +11,7 @@ import { map, filter } from 'rxjs/operators';
 
 import { LoginViewModel } from '../models/login-view-model';
 import { RegisterUserViewModel } from '../models/register-user-view-model';
+import { ResponseCode } from '../models/response-code';
 import { RoleViewModel } from '../models/role-view-model';
 
 @Injectable({
@@ -237,16 +238,16 @@ export class UserService extends BaseService {
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiUserLoginPost()` instead.
+   * To access only the response body, use `apiUserLoginPost$Plain()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiUserLoginPost$Response(params?: {
+  apiUserLoginPost$Plain$Response(params?: {
     body?: LoginViewModel
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<ResponseCode>> {
 
     const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserLoginPostPath, 'post');
     if (params) {
@@ -255,31 +256,79 @@ export class UserService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
+      accept: 'text/plain',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<ResponseCode>;
       })
     );
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiUserLoginPost$Response()` instead.
+   * To access the full response (for headers, for example), `apiUserLoginPost$Plain$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiUserLoginPost(params?: {
+  apiUserLoginPost$Plain(params?: {
     body?: LoginViewModel
   },
   context?: HttpContext
 
-): Observable<void> {
+): Observable<ResponseCode> {
 
-    return this.apiUserLoginPost$Response(params,context).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.apiUserLoginPost$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseCode>) => r.body as ResponseCode)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserLoginPost$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserLoginPost$Json$Response(params?: {
+    body?: LoginViewModel
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseCode>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserLoginPostPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseCode>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserLoginPost$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserLoginPost$Json(params?: {
+    body?: LoginViewModel
+  },
+  context?: HttpContext
+
+): Observable<ResponseCode> {
+
+    return this.apiUserLoginPost$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseCode>) => r.body as ResponseCode)
     );
   }
 

@@ -14,6 +14,10 @@ const routes: Routes = [
         loadChildren:() => import('./features/home/home.module').then(m => m.HomeModule )
       },
       {
+        path:'category',
+        loadChildren:() => import('./features/category/category.module').then(m => m.CategoryModule)
+      }, 
+      {
         path:'welcome',
         loadChildren:() => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule)
       }

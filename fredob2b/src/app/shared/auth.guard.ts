@@ -15,15 +15,17 @@ export class AuthGuard {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree>
       | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this.accountService.isUserLoggenIn !== true){
-     
-      this.router.navigate(['account']);
-    }else{
+
+    const account = this.accountService.accountValue;
+    if(account){
+      if(account?.responseCode == 2 || account?.responseCode == null){
       
-    }    
-    return true;
-  
-  
+        this.router.navigate(['account']);
+      } else {
+        return true;
+      }  
+    }
+    this.router.navigate(['account']);
+    return false;
   }
-  
 }
