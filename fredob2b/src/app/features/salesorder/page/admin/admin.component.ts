@@ -4,6 +4,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { SalesOrderHeaderDto } from 'src/app/services/api/fredob2b/models';
 import { OrderService } from 'src/app/services/api/fredob2b/services';
 import { CreateComponent } from '../create/create.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -15,7 +16,8 @@ export class AdminComponent implements OnInit {
 
   constructor(private salesOrder:OrderService,
               private drawerService: NzDrawerService,
-               private modal: NzModalService){
+               private modal: NzModalService,
+               private router: Router){
 
   }
 
@@ -33,7 +35,7 @@ export class AdminComponent implements OnInit {
 
   }  
   new(): void {
-
+    this.router.navigate(['salesorder/new']);
   }
   edit(data: SalesOrderHeaderDto): void {
     console.log(data);
