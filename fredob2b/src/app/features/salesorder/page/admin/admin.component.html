@@ -1,0 +1,26 @@
+<button nz-button nzType="primary" (click)="new()">New</button>
+<nz-table >
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Customer</th>
+        <th>Status</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of salesOrderList">
+        <td>{{ data.orderDate }}</td>
+        <td>{{ data.customerId }}</td>
+        <td>{{ data.status }}</td>
+        <td>{{ data.total }}</td>
+        <td>
+          <a (click)="edit(data)" >Edit</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <!-- <a (click)="showDeleteConfirm()" > Delete</a> -->
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+

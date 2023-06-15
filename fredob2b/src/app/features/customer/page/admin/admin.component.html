@@ -3,14 +3,17 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Description</th>
-        <th>Action</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of categoryList">
-        <td>{{ data.categoryName}}</td>
-        <td> {{ data.description }}</td>
+      <tr *ngFor="let data of customerList">
+        <td>{{ data.customerName }}</td>
+        <td> {{ data.email }}</td>
+        <td> {{ data.phone }}</td>
+        <td> {{ data.address }}</td>
         <td>
           <a (click)="edit(data)" >Edit</a>
           <nz-divider nzType="vertical"></nz-divider>
@@ -19,3 +22,4 @@
       </tr>
     </tbody>
   </nz-table>
+

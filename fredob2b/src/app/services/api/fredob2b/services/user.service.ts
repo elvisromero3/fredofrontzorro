@@ -11,7 +11,7 @@ import { map, filter } from 'rxjs/operators';
 
 import { LoginViewModel } from '../models/login-view-model';
 import { RegisterUserViewModel } from '../models/register-user-view-model';
-import { ResponseCode } from '../models/response-code';
+import { ResponseModel } from '../models/response-model';
 import { RoleViewModel } from '../models/role-view-model';
 
 @Injectable({
@@ -32,16 +32,16 @@ export class UserService extends BaseService {
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiUserRegisterUserPost()` instead.
+   * To access only the response body, use `apiUserRegisterUserPost$Plain()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiUserRegisterUserPost$Response(params?: {
+  apiUserRegisterUserPost$Plain$Response(params?: {
     body?: RegisterUserViewModel
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<ResponseModel>> {
 
     const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserRegisterUserPostPath, 'post');
     if (params) {
@@ -50,31 +50,79 @@ export class UserService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
+      accept: 'text/plain',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<ResponseModel>;
       })
     );
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiUserRegisterUserPost$Response()` instead.
+   * To access the full response (for headers, for example), `apiUserRegisterUserPost$Plain$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiUserRegisterUserPost(params?: {
+  apiUserRegisterUserPost$Plain(params?: {
     body?: RegisterUserViewModel
   },
   context?: HttpContext
 
-): Observable<void> {
+): Observable<ResponseModel> {
 
-    return this.apiUserRegisterUserPost$Response(params,context).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.apiUserRegisterUserPost$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseModel>) => r.body as ResponseModel)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserRegisterUserPost$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserRegisterUserPost$Json$Response(params?: {
+    body?: RegisterUserViewModel
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseModel>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserRegisterUserPostPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseModel>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserRegisterUserPost$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserRegisterUserPost$Json(params?: {
+    body?: RegisterUserViewModel
+  },
+  context?: HttpContext
+
+): Observable<ResponseModel> {
+
+    return this.apiUserRegisterUserPost$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseModel>) => r.body as ResponseModel)
     );
   }
 
@@ -85,15 +133,15 @@ export class UserService extends BaseService {
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiUserGetAllUserGet()` instead.
+   * To access only the response body, use `apiUserGetAllUserGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiUserGetAllUserGet$Response(params?: {
+  apiUserGetAllUserGet$Plain$Response(params?: {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<ResponseModel>> {
 
     const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserGetAllUserGetPath, 'get');
     if (params) {
@@ -101,30 +149,75 @@ export class UserService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
+      accept: 'text/plain',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<ResponseModel>;
       })
     );
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiUserGetAllUserGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiUserGetAllUserGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiUserGetAllUserGet(params?: {
+  apiUserGetAllUserGet$Plain(params?: {
   },
   context?: HttpContext
 
-): Observable<void> {
+): Observable<ResponseModel> {
 
-    return this.apiUserGetAllUserGet$Response(params,context).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.apiUserGetAllUserGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseModel>) => r.body as ResponseModel)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserGetAllUserGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetAllUserGet$Json$Response(params?: {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseModel>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserGetAllUserGetPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseModel>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserGetAllUserGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetAllUserGet$Json(params?: {
+  },
+  context?: HttpContext
+
+): Observable<ResponseModel> {
+
+    return this.apiUserGetAllUserGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseModel>) => r.body as ResponseModel)
     );
   }
 
@@ -135,16 +228,16 @@ export class UserService extends BaseService {
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiUserAddRolePost()` instead.
+   * To access only the response body, use `apiUserAddRolePost$Plain()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiUserAddRolePost$Response(params?: {
+  apiUserAddRolePost$Plain$Response(params?: {
     body?: RoleViewModel
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<ResponseModel>> {
 
     const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserAddRolePostPath, 'post');
     if (params) {
@@ -153,31 +246,79 @@ export class UserService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
+      accept: 'text/plain',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<ResponseModel>;
       })
     );
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiUserAddRolePost$Response()` instead.
+   * To access the full response (for headers, for example), `apiUserAddRolePost$Plain$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiUserAddRolePost(params?: {
+  apiUserAddRolePost$Plain(params?: {
     body?: RoleViewModel
   },
   context?: HttpContext
 
-): Observable<void> {
+): Observable<ResponseModel> {
 
-    return this.apiUserAddRolePost$Response(params,context).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.apiUserAddRolePost$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseModel>) => r.body as ResponseModel)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserAddRolePost$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserAddRolePost$Json$Response(params?: {
+    body?: RoleViewModel
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseModel>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserAddRolePostPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseModel>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserAddRolePost$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserAddRolePost$Json(params?: {
+    body?: RoleViewModel
+  },
+  context?: HttpContext
+
+): Observable<ResponseModel> {
+
+    return this.apiUserAddRolePost$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseModel>) => r.body as ResponseModel)
     );
   }
 
@@ -188,15 +329,15 @@ export class UserService extends BaseService {
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiUserGetRolesGet()` instead.
+   * To access only the response body, use `apiUserGetRolesGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiUserGetRolesGet$Response(params?: {
+  apiUserGetRolesGet$Plain$Response(params?: {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<ResponseModel>> {
 
     const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserGetRolesGetPath, 'get');
     if (params) {
@@ -204,30 +345,75 @@ export class UserService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
+      accept: 'text/plain',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<ResponseModel>;
       })
     );
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiUserGetRolesGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiUserGetRolesGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiUserGetRolesGet(params?: {
+  apiUserGetRolesGet$Plain(params?: {
   },
   context?: HttpContext
 
-): Observable<void> {
+): Observable<ResponseModel> {
 
-    return this.apiUserGetRolesGet$Response(params,context).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.apiUserGetRolesGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseModel>) => r.body as ResponseModel)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserGetRolesGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetRolesGet$Json$Response(params?: {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseModel>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserGetRolesGetPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseModel>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserGetRolesGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetRolesGet$Json(params?: {
+  },
+  context?: HttpContext
+
+): Observable<ResponseModel> {
+
+    return this.apiUserGetRolesGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseModel>) => r.body as ResponseModel)
     );
   }
 
@@ -247,7 +433,7 @@ export class UserService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<ResponseCode>> {
+): Observable<StrictHttpResponse<ResponseModel>> {
 
     const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserLoginPostPath, 'post');
     if (params) {
@@ -261,7 +447,7 @@ export class UserService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<ResponseCode>;
+        return r as StrictHttpResponse<ResponseModel>;
       })
     );
   }
@@ -277,10 +463,10 @@ export class UserService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<ResponseCode> {
+): Observable<ResponseModel> {
 
     return this.apiUserLoginPost$Plain$Response(params,context).pipe(
-      map((r: StrictHttpResponse<ResponseCode>) => r.body as ResponseCode)
+      map((r: StrictHttpResponse<ResponseModel>) => r.body as ResponseModel)
     );
   }
 
@@ -295,7 +481,7 @@ export class UserService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<ResponseCode>> {
+): Observable<StrictHttpResponse<ResponseModel>> {
 
     const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserLoginPostPath, 'post');
     if (params) {
@@ -309,7 +495,7 @@ export class UserService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<ResponseCode>;
+        return r as StrictHttpResponse<ResponseModel>;
       })
     );
   }
@@ -325,10 +511,10 @@ export class UserService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<ResponseCode> {
+): Observable<ResponseModel> {
 
     return this.apiUserLoginPost$Json$Response(params,context).pipe(
-      map((r: StrictHttpResponse<ResponseCode>) => r.body as ResponseCode)
+      map((r: StrictHttpResponse<ResponseModel>) => r.body as ResponseModel)
     );
   }
 

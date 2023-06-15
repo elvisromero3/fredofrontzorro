@@ -14,12 +14,20 @@ const routes: Routes = [
         loadChildren:() => import('./features/home/home.module').then(m => m.HomeModule )
       },
       {
+        path:'salesorder',
+        loadChildren:()=> import('./features/salesorder/salesorder.module').then(m => m.SalesorderModule)
+      },
+      {
+        path:'customer',
+        loadChildren:()=> import('./features/customer/customer.module').then(m => m.CustomerModule)
+      },
+      {
         path:'category',
         loadChildren:() => import('./features/category/category.module').then(m => m.CategoryModule)
       }, 
       {
-        path:'welcome',
-        loadChildren:() => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule)
+        path:'product',
+        loadChildren:() => import('./features/product/product.module').then(m => m.ProductModule)
       }
     ]},
   { path: 'account', component:AuthLayoutComponent, loadChildren:() => import('./features/account/account.module').then(m => m.AccountModule) },

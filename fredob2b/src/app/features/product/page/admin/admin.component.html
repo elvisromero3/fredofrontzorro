@@ -2,15 +2,17 @@
 <nz-table >
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Description</th>
+        <th>Code</th>
+        <th>Product</th>
+        <th>Unit Price</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of categoryList">
-        <td>{{ data.categoryName}}</td>
-        <td> {{ data.description }}</td>
+      <tr *ngFor="let data of productList">
+        <td>{{ data.productCode }}</td>
+        <td>{{ data.productName }}</td>
+        <td>{{ data.unitPrice }} </td>
         <td>
           <a (click)="edit(data)" >Edit</a>
           <nz-divider nzType="vertical"></nz-divider>
@@ -19,3 +21,4 @@
       </tr>
     </tbody>
   </nz-table>
+

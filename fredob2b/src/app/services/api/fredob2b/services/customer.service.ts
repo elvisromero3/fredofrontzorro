@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { CreateCustomerRequest } from '../models/create-customer-request';
+import { CustomerDto } from '../models/customer-dto';
 import { UpdateCustomerRequest } from '../models/update-customer-request';
 
 @Injectable({
@@ -30,15 +31,15 @@ export class CustomerService extends BaseService {
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiCustomerGet()` instead.
+   * To access only the response body, use `apiCustomerGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiCustomerGet$Response(params?: {
+  apiCustomerGet$Plain$Response(params?: {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<Array<CustomerDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, CustomerService.ApiCustomerGetPath, 'get');
     if (params) {
@@ -46,30 +47,75 @@ export class CustomerService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
+      accept: 'text/plain',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<Array<CustomerDto>>;
       })
     );
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiCustomerGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiCustomerGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiCustomerGet(params?: {
+  apiCustomerGet$Plain(params?: {
   },
   context?: HttpContext
 
-): Observable<void> {
+): Observable<Array<CustomerDto>> {
 
-    return this.apiCustomerGet$Response(params,context).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.apiCustomerGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<Array<CustomerDto>>) => r.body as Array<CustomerDto>)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCustomerGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiCustomerGet$Json$Response(params?: {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<Array<CustomerDto>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, CustomerService.ApiCustomerGetPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<CustomerDto>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCustomerGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiCustomerGet$Json(params?: {
+  },
+  context?: HttpContext
+
+): Observable<Array<CustomerDto>> {
+
+    return this.apiCustomerGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<Array<CustomerDto>>) => r.body as Array<CustomerDto>)
     );
   }
 
@@ -80,16 +126,16 @@ export class CustomerService extends BaseService {
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiCustomerPost()` instead.
+   * To access only the response body, use `apiCustomerPost$Plain()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiCustomerPost$Response(params?: {
+  apiCustomerPost$Plain$Response(params?: {
     body?: CreateCustomerRequest
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<CustomerDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, CustomerService.ApiCustomerPostPath, 'post');
     if (params) {
@@ -98,31 +144,79 @@ export class CustomerService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
+      accept: 'text/plain',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<CustomerDto>;
       })
     );
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiCustomerPost$Response()` instead.
+   * To access the full response (for headers, for example), `apiCustomerPost$Plain$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiCustomerPost(params?: {
+  apiCustomerPost$Plain(params?: {
     body?: CreateCustomerRequest
   },
   context?: HttpContext
 
-): Observable<void> {
+): Observable<CustomerDto> {
 
-    return this.apiCustomerPost$Response(params,context).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.apiCustomerPost$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<CustomerDto>) => r.body as CustomerDto)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCustomerPost$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerPost$Json$Response(params?: {
+    body?: CreateCustomerRequest
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<CustomerDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, CustomerService.ApiCustomerPostPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<CustomerDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCustomerPost$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerPost$Json(params?: {
+    body?: CreateCustomerRequest
+  },
+  context?: HttpContext
+
+): Observable<CustomerDto> {
+
+    return this.apiCustomerPost$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<CustomerDto>) => r.body as CustomerDto)
     );
   }
 
@@ -133,16 +227,16 @@ export class CustomerService extends BaseService {
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiCustomerIdGet()` instead.
+   * To access only the response body, use `apiCustomerIdGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiCustomerIdGet$Response(params: {
+  apiCustomerIdGet$Plain$Response(params: {
     id: number;
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<CustomerDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, CustomerService.ApiCustomerIdGetPath, 'get');
     if (params) {
@@ -151,31 +245,79 @@ export class CustomerService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
+      accept: 'text/plain',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<CustomerDto>;
       })
     );
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiCustomerIdGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiCustomerIdGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiCustomerIdGet(params: {
+  apiCustomerIdGet$Plain(params: {
     id: number;
   },
   context?: HttpContext
 
-): Observable<void> {
+): Observable<CustomerDto> {
 
-    return this.apiCustomerIdGet$Response(params,context).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.apiCustomerIdGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<CustomerDto>) => r.body as CustomerDto)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCustomerIdGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiCustomerIdGet$Json$Response(params: {
+    id: number;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<CustomerDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, CustomerService.ApiCustomerIdGetPath, 'get');
+    if (params) {
+      rb.path('id', params.id, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<CustomerDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCustomerIdGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiCustomerIdGet$Json(params: {
+    id: number;
+  },
+  context?: HttpContext
+
+): Observable<CustomerDto> {
+
+    return this.apiCustomerIdGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<CustomerDto>) => r.body as CustomerDto)
     );
   }
 
@@ -186,17 +328,17 @@ export class CustomerService extends BaseService {
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiCustomerIdPut()` instead.
+   * To access only the response body, use `apiCustomerIdPut$Plain()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiCustomerIdPut$Response(params: {
+  apiCustomerIdPut$Plain$Response(params: {
     id: number;
     body?: UpdateCustomerRequest
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<CustomerDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, CustomerService.ApiCustomerIdPutPath, 'put');
     if (params) {
@@ -206,32 +348,83 @@ export class CustomerService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
+      accept: 'text/plain',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<CustomerDto>;
       })
     );
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiCustomerIdPut$Response()` instead.
+   * To access the full response (for headers, for example), `apiCustomerIdPut$Plain$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiCustomerIdPut(params: {
+  apiCustomerIdPut$Plain(params: {
     id: number;
     body?: UpdateCustomerRequest
   },
   context?: HttpContext
 
-): Observable<void> {
+): Observable<CustomerDto> {
 
-    return this.apiCustomerIdPut$Response(params,context).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.apiCustomerIdPut$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<CustomerDto>) => r.body as CustomerDto)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCustomerIdPut$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerIdPut$Json$Response(params: {
+    id: number;
+    body?: UpdateCustomerRequest
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<CustomerDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, CustomerService.ApiCustomerIdPutPath, 'put');
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<CustomerDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCustomerIdPut$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerIdPut$Json(params: {
+    id: number;
+    body?: UpdateCustomerRequest
+  },
+  context?: HttpContext
+
+): Observable<CustomerDto> {
+
+    return this.apiCustomerIdPut$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<CustomerDto>) => r.body as CustomerDto)
     );
   }
 

@@ -39,10 +39,107 @@ export class ProductService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<ProductDto>> {
+): Observable<StrictHttpResponse<Array<ProductDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, ProductService.ApiProductGetPath, 'get');
     if (params) {
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<ProductDto>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiProductGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductGet$Plain(params?: {
+  },
+  context?: HttpContext
+
+): Observable<Array<ProductDto>> {
+
+    return this.apiProductGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<Array<ProductDto>>) => r.body as Array<ProductDto>)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiProductGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductGet$Json$Response(params?: {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<Array<ProductDto>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ProductService.ApiProductGetPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<ProductDto>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiProductGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductGet$Json(params?: {
+  },
+  context?: HttpContext
+
+): Observable<Array<ProductDto>> {
+
+    return this.apiProductGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<Array<ProductDto>>) => r.body as Array<ProductDto>)
+    );
+  }
+
+  /**
+   * Path part for operation apiProductPost
+   */
+  static readonly ApiProductPostPath = '/api/Product';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiProductPost$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiProductPost$Plain$Response(params?: {
+    body?: CreateProductRequest
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ProductDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ProductService.ApiProductPostPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/*+json');
     }
 
     return this.http.request(rb.build({
@@ -59,35 +156,38 @@ export class ProductService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiProductGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiProductPost$Plain$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiProductGet$Plain(params?: {
+  apiProductPost$Plain(params?: {
+    body?: CreateProductRequest
   },
   context?: HttpContext
 
 ): Observable<ProductDto> {
 
-    return this.apiProductGet$Plain$Response(params,context).pipe(
+    return this.apiProductPost$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<ProductDto>) => r.body as ProductDto)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiProductGet$Json()` instead.
+   * To access only the response body, use `apiProductPost$Json()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiProductGet$Json$Response(params?: {
+  apiProductPost$Json$Response(params?: {
+    body?: CreateProductRequest
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<ProductDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ProductService.ApiProductGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ProductService.ApiProductPostPath, 'post');
     if (params) {
+      rb.body(params.body, 'application/*+json');
     }
 
     return this.http.request(rb.build({
@@ -104,71 +204,19 @@ export class ProductService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiProductGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiProductPost$Json$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiProductGet$Json(params?: {
+  apiProductPost$Json(params?: {
+    body?: CreateProductRequest
   },
   context?: HttpContext
 
 ): Observable<ProductDto> {
 
-    return this.apiProductGet$Json$Response(params,context).pipe(
+    return this.apiProductPost$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ProductDto>) => r.body as ProductDto)
-    );
-  }
-
-  /**
-   * Path part for operation apiProductPost
-   */
-  static readonly ApiProductPostPath = '/api/Product';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiProductPost()` instead.
-   *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
-   */
-  apiProductPost$Response(params?: {
-    body?: CreateProductRequest
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
-
-    const rb = new RequestBuilder(this.rootUrl, ProductService.ApiProductPostPath, 'post');
-    if (params) {
-      rb.body(params.body, 'application/*+json');
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*',
-      context: context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiProductPost$Response()` instead.
-   *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
-   */
-  apiProductPost(params?: {
-    body?: CreateProductRequest
-  },
-  context?: HttpContext
-
-): Observable<void> {
-
-    return this.apiProductPost$Response(params,context).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
@@ -179,16 +227,16 @@ export class ProductService extends BaseService {
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiProductIdGet()` instead.
+   * To access only the response body, use `apiProductIdGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiProductIdGet$Response(params: {
+  apiProductIdGet$Plain$Response(params: {
     id: number;
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<ProductDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, ProductService.ApiProductIdGetPath, 'get');
     if (params) {
@@ -197,31 +245,79 @@ export class ProductService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
+      accept: 'text/plain',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<ProductDto>;
       })
     );
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiProductIdGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiProductIdGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiProductIdGet(params: {
+  apiProductIdGet$Plain(params: {
     id: number;
   },
   context?: HttpContext
 
-): Observable<void> {
+): Observable<ProductDto> {
 
-    return this.apiProductIdGet$Response(params,context).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.apiProductIdGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ProductDto>) => r.body as ProductDto)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiProductIdGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductIdGet$Json$Response(params: {
+    id: number;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ProductDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ProductService.ApiProductIdGetPath, 'get');
+    if (params) {
+      rb.path('id', params.id, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ProductDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiProductIdGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductIdGet$Json(params: {
+    id: number;
+  },
+  context?: HttpContext
+
+): Observable<ProductDto> {
+
+    return this.apiProductIdGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ProductDto>) => r.body as ProductDto)
     );
   }
 
@@ -232,17 +328,17 @@ export class ProductService extends BaseService {
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiProductIdPut()` instead.
+   * To access only the response body, use `apiProductIdPut$Plain()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiProductIdPut$Response(params: {
+  apiProductIdPut$Plain$Response(params: {
     id: number;
     body?: UpdateProductRequest
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<ProductDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, ProductService.ApiProductIdPutPath, 'put');
     if (params) {
@@ -252,32 +348,83 @@ export class ProductService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
+      accept: 'text/plain',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<ProductDto>;
       })
     );
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiProductIdPut$Response()` instead.
+   * To access the full response (for headers, for example), `apiProductIdPut$Plain$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiProductIdPut(params: {
+  apiProductIdPut$Plain(params: {
     id: number;
     body?: UpdateProductRequest
   },
   context?: HttpContext
 
-): Observable<void> {
+): Observable<ProductDto> {
 
-    return this.apiProductIdPut$Response(params,context).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.apiProductIdPut$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ProductDto>) => r.body as ProductDto)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiProductIdPut$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiProductIdPut$Json$Response(params: {
+    id: number;
+    body?: UpdateProductRequest
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ProductDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ProductService.ApiProductIdPutPath, 'put');
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ProductDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiProductIdPut$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiProductIdPut$Json(params: {
+    id: number;
+    body?: UpdateProductRequest
+  },
+  context?: HttpContext
+
+): Observable<ProductDto> {
+
+    return this.apiProductIdPut$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ProductDto>) => r.body as ProductDto)
     );
   }
 

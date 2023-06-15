@@ -1,44 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
-import { CategoryService, ProductService } from 'src/app/services/api/fredob2b/services';
-import { CreateComponent } from '../create/create.component';
-import { CategoryDto } from 'src/app/services/api/fredob2b/models';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { CustomerDto } from 'src/app/services/api/fredob2b/models';
+import { CustomerService } from 'src/app/services/api/fredob2b/services';
+import { CreateComponent } from '../create/create.component';
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
-export class AdminComponent implements OnInit {
-categoryList:CategoryDto[]=[];
-/**
- *
- */
-constructor(
-  private categoryServices:CategoryService,
-  private productServices:ProductService,
-  private drawerService: NzDrawerService,
-  private modal: NzModalService
+export class AdminComponent implements OnInit  {
+  customerList:CustomerDto[]=[];
 
-) {
-  
-  
-}
+  constructor(private customerService:CustomerService,
+              private drawerService: NzDrawerService,
+              private modal: NzModalService
+
+    ){}
+
+
+
   ngOnInit(): void {
-    
     this.getData();
   }
 
-  getData():void {
-    this.categoryServices.apiCategoryGet$Json()
-    .subscribe(resp =>{
-      this.categoryList = resp;
-    })
+  getData(): void {
+    this.customerService.apiCustomerGet$Json()
+    .subscribe(resp => {
+      this.customerList = resp;
+    });
   }
-
+  
   new(): void {
     const drawerRef = this.drawerService.create<CreateComponent, { value: string }, string>({
-      nzTitle: 'New Category',
+      nzTitle: 'New Customer',
       nzFooter: '',
       nzExtra: '',
       nzContent: CreateComponent,
@@ -50,10 +46,10 @@ constructor(
       this.getData();
     });
   }
-  edit(data: CategoryDto): void {
+  edit(data: CustomerDto): void {
     console.log(data);
     const drawerRef = this.drawerService.create<CreateComponent, { value: string }, string>({
-      nzTitle: 'New Category',
+      nzTitle: 'New Customer',
       nzFooter: '',
       nzExtra: '',
       nzContent: CreateComponent,
@@ -69,7 +65,7 @@ constructor(
   showDeleteConfirm(): void {
     this.modal.confirm({
       nzTitle: 'Are you sure delete this?',
-      nzContent: '<b style="color: red;">Category</b>',
+      nzContent: '<b style="color: red;">Customer</b>',
       nzOkText: 'Yes',
       nzOkType: 'primary',
       nzOkDanger: true,
@@ -79,10 +75,8 @@ constructor(
     });
   }
 
-}
 
-export interface Category {
-  categoryName: string;
-  description: string;
-}
 
+
+
+}
