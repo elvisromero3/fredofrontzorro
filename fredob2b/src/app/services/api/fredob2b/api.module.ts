@@ -6,6 +6,7 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { CategoryService } from './services/category.service';
 import { CustomerService } from './services/customer.service';
+import { MonitorAgentService } from './services/monitor-agent.service';
 import { OrderService } from './services/order.service';
 import { ProductService } from './services/product.service';
 import { UploadService } from './services/upload.service';
@@ -22,6 +23,7 @@ import { ValuesService } from './services/values.service';
   providers: [
     CategoryService,
     CustomerService,
+    MonitorAgentService,
     OrderService,
     ProductService,
     UploadService,

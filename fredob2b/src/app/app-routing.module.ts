@@ -28,6 +28,10 @@ const routes: Routes = [
       {
         path:'product',
         loadChildren:() => import('./features/product/product.module').then(m => m.ProductModule)
+      },
+      {
+        path:'monitor',
+        loadChildren:() => import('./features/monitor-agent/monitor-agent.module').then(m => m.MonitorAgentModule)
       }
     ]},
   { path: 'account', component:AuthLayoutComponent, loadChildren:() => import('./features/account/account.module').then(m => m.AccountModule) },

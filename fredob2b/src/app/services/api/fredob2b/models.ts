@@ -1,11 +1,13 @@
 export { CategoryDto } from './models/category-dto';
 export { CreateCategoryRequest } from './models/create-category-request';
 export { CreateCustomerRequest } from './models/create-customer-request';
+export { CreateMonitorAgentRequest } from './models/create-monitor-agent-request';
 export { CreateProductRequest } from './models/create-product-request';
 export { CreateSalesOrderDetailRequest } from './models/create-sales-order-detail-request';
 export { CreateSalesOrderRequest } from './models/create-sales-order-request';
 export { CustomerDto } from './models/customer-dto';
 export { LoginViewModel } from './models/login-view-model';
+export { MonitorAgentDto } from './models/monitor-agent-dto';
 export { ProductDto } from './models/product-dto';
 export { RegisterUserViewModel } from './models/register-user-view-model';
 export { ResponseCode } from './models/response-code';

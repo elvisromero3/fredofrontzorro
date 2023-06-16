@@ -1,0 +1,21 @@
+<nz-table >
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Monitor Log</th>
+        <th>Create</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of monitorList">
+        <td>{{ data.monitorDescription}}</td>
+        <td> {{ data.monitorLog }}</td>
+        <td>
+            {{ data.createdDate }}
+          <!-- <a (click)="edit(data)" >Edit</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="showDeleteConfirm()" > Delete</a> -->
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
