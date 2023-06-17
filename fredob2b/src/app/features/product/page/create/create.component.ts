@@ -11,7 +11,7 @@ import { ProductService } from 'src/app/services/api/fredob2b/services';
 })
 export class CreateComponent implements OnInit {
   validateForm!: FormGroup;
-
+  isSpinning = true;
   @Input() Id : number | undefined ;
 
   constructor(private fb: FormBuilder,
@@ -23,6 +23,7 @@ export class CreateComponent implements OnInit {
 
 
   ngOnInit(): void {
+
      this.validateForm = this.fb.group({
       productCode:[null,[Validators.required]],
       productName: [null, [Validators.required]],
@@ -31,7 +32,17 @@ export class CreateComponent implements OnInit {
       standardCost: [null,[Validators.required]]
      })
     
+     if(this.Id !== -1){
+      this.isSpinning = true;
+      this.productService.apiProductIdGet$Json({id: this.Id as number})
+        .subscribe( resp =>{
 
+          this.validateForm.patchValue(resp)
+
+          
+        });
+     }
+    this.isSpinning = false;
   }
 
   submitForm(): void {
@@ -40,6 +51,8 @@ export class CreateComponent implements OnInit {
       console.log('submit', this.validateForm.value);
 
       if(this.Id == -1){
+        this.isSpinning = true;
+
         const createProductRequest:CreateProductRequest ={
           categoryId: this.validateForm.get('categoryId')?.value,
           color: '',
@@ -57,11 +70,13 @@ export class CreateComponent implements OnInit {
           unitsOnOrder: 0,
         }
 
-        this.productService.apiProductPost$Json({body: this.validateForm.value})
+        this.productService.apiProductPost$Json({body: createProductRequest})
       .subscribe(resp => {
+       // this.isSpinning = false;
         this.drawerRef.close();
       });
       }else { 
+        console.log("Edit:", this.Id );
         const updateProductRequest:UpdateProductRequest ={
           id: this.Id,
           categoryId: this.validateForm.get('categoryId')?.value,

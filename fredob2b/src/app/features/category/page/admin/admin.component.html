@@ -1,5 +1,6 @@
 <button nz-button nzType="primary" (click)="new()">New</button>
-<nz-table >
+<nz-spin [nzSpinning]="isSpinning">
+<nz-table nzSize="small" >
     <thead>
       <tr>
         <th>Name</th>
@@ -12,10 +13,13 @@
         <td>{{ data.categoryName}}</td>
         <td> {{ data.description }}</td>
         <td>
-          <a (click)="edit(data)" >Edit</a>
+          <a nz-tooltip nzTooltipTitle="detail"><span nz-icon nzType="zoom-in" nzTheme="outline"></span></a>
           <nz-divider nzType="vertical"></nz-divider>
-          <a (click)="showDeleteConfirm()" > Delete</a>
+          <a nz-tooltip nzTooltipTitle="edit" (click)="edit(data)" ><span nz-icon nzType="edit" nzTheme="outline"></span></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a  nz-tooltip nzTooltipTitle="delete" (click)="showDeleteConfirm()" ><span nz-icon nzType="delete" nzTheme="outline"></span></a>
         </td>
       </tr>
     </tbody>
   </nz-table>
+</nz-spin>

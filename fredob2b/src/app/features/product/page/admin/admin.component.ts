@@ -12,7 +12,8 @@ import { CreateComponent } from '../create/create.component';
 })
 export class AdminComponent implements OnInit {
  productList:ProductDto[]=[];
- 
+ isSpinning:boolean= true;
+
   constructor(
     private productServices:ProductService,
     private drawerService: NzDrawerService,
@@ -29,6 +30,7 @@ export class AdminComponent implements OnInit {
     this.productServices.apiProductGet$Json()
     .subscribe(resp => {
       this.productList = resp;
+      this.isSpinning = false;
     });
   }
   new(): void {
@@ -48,7 +50,7 @@ export class AdminComponent implements OnInit {
   edit(data: ProductDto): void {
     console.log(data);
     const drawerRef = this.drawerService.create<CreateComponent, { value: string }, string>({
-      nzTitle: 'New Product',
+      nzTitle: 'Edit Product',
       nzFooter: '',
       nzExtra: '',
       nzContent: CreateComponent,

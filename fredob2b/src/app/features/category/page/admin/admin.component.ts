@@ -11,6 +11,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 })
 export class AdminComponent implements OnInit {
 categoryList:CategoryDto[]=[];
+isSpinning:boolean= true;
 /**
  *
  */
@@ -33,6 +34,7 @@ constructor(
     this.categoryServices.apiCategoryGet$Json()
     .subscribe(resp =>{
       this.categoryList = resp;
+      this.isSpinning = false;
     })
   }
 

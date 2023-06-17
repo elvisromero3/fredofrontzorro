@@ -12,6 +12,7 @@ import { CreateComponent } from '../create/create.component';
 })
 export class AdminComponent implements OnInit  {
   customerList:CustomerDto[]=[];
+  isSpinning:boolean= true;
 
   constructor(private customerService:CustomerService,
               private drawerService: NzDrawerService,
@@ -29,6 +30,7 @@ export class AdminComponent implements OnInit  {
     this.customerService.apiCustomerGet$Json()
     .subscribe(resp => {
       this.customerList = resp;
+      this.isSpinning = false;
     });
   }
   

@@ -1,5 +1,6 @@
 <button nz-button nzType="primary" (click)="new()">New</button>
-<nz-table >
+<nz-spin [nzSpinning]="isSpinning">
+<nz-table nzSize="small" #productTable [nzData]="productList" [nzPageSize]="10">
     <thead>
       <tr>
         <th>Code</th>
@@ -9,16 +10,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of productList">
+      <tr *ngFor="let data of productTable.data">
         <td>{{ data.productCode }}</td>
         <td>{{ data.productName }}</td>
         <td>{{ data.unitPrice }} </td>
         <td>
-          <a (click)="edit(data)" >Edit</a>
+          <a nz-tooltip nzTooltipTitle="detail"><span nz-icon nzType="zoom-in" nzTheme="outline"></span></a>
           <nz-divider nzType="vertical"></nz-divider>
-          <a (click)="showDeleteConfirm()" > Delete</a>
+          <a nz-tooltip nzTooltipTitle="edit" (click)="edit(data)" ><span nz-icon nzType="edit" nzTheme="outline"></span></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a  nz-tooltip nzTooltipTitle="delete" (click)="showDeleteConfirm()" ><span nz-icon nzType="delete" nzTheme="outline"></span></a>
         </td>
       </tr>
     </tbody>
   </nz-table>
+</nz-spin>
 
