@@ -32,6 +32,14 @@ const routes: Routes = [
       {
         path:'monitor',
         loadChildren:() => import('./features/monitor-agent/monitor-agent.module').then(m => m.MonitorAgentModule)
+      },
+      {
+        path:'dispatches',
+        loadChildren:() => import('./features/dispatches/dispatches.module').then(m => m.DispatchesModule)
+      },
+      {
+        path:'expenses',
+        loadChildren:() => import('./features/expenses/expenses.module').then(m => m.ExpensesModule)
       }
     ]},
   { path: 'account', component:AuthLayoutComponent, loadChildren:() => import('./features/account/account.module').then(m => m.AccountModule) },

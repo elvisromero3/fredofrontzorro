@@ -1,0 +1,61 @@
+<div nz-row>
+    
+    <button nz-button nzType="primary" (click)="new()">Add Dispatch</button>
+    <nz-divider nzType="vertical"></nz-divider>
+    <button nz-button nzType="primary" (click)="new()">Add Empty Move</button>
+    <nz-divider nzType="vertical"></nz-divider>
+    <div nz-col [nzSpan]="6">
+        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+            <input type="text" nz-input placeholder="input search text" />
+          </nz-input-group>
+          <ng-template #suffixIconButton>
+            <button nz-button nzType="primary" nzSearch><span nz-icon nzType="search"></span></button>
+          </ng-template>
+
+    </div>
+
+</div>
+<br>
+<nz-spin [nzSpinning]="isSpinning">
+<nz-table nzSize="small" #dispachesTable [nzData]="dispatchesList" [nzPageSize]="10">
+    <thead>
+      <tr>
+        <th>Load#</th>
+        <th>Pickup</th>
+        <th>Delivery</th>
+        <th>Driver</th>
+        <th>Truck</th>
+        <th>Customer</th>
+        <th>From</th>
+        <th>To</th>
+        <th>BOL</th>
+        <th>Total</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of dispachesTable.data">
+        <td>{{ data.load }}</td>
+        <td>{{ data.pickup }}</td>
+        <td>{{ data.delivery }} </td>
+        <td>{{ data.driver }} </td>
+        <td>{{ data.truck }} </td>
+        <td>{{ data.customer }} </td>
+        <td>{{ data.from }} </td>
+        <td>{{ data.to }} </td>
+        <td>{{ data.bol }} </td>
+        <td>{{ data.total }} </td>
+        
+
+        <td>
+          <a nz-tooltip nzTooltipTitle="detail"><span nz-icon nzType="zoom-in" nzTheme="outline"></span></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-tooltip nzTooltipTitle="edit" (click)="edit(data)" ><span nz-icon nzType="edit" nzTheme="outline"></span></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a  nz-tooltip nzTooltipTitle="delete" (click)="showDeleteConfirm()" ><span nz-icon nzType="delete" nzTheme="outline"></span></a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-spin>
+

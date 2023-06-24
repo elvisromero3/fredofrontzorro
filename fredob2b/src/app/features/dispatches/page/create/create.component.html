@@ -1,0 +1,65 @@
+<form nz-form >
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Driver</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzValidatingTip="Validating...">
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a person" >
+            <nz-option nzLabel="Allen Campbell" nzValue="jack"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Truck</nz-form-label>
+      <nz-form-control [nzSpan]="12">
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a person" >
+            <nz-option nzLabel="0102 truck Freightlliner" nzValue="jack"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Customer</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <input nz-input  placeholder="mobile" />
+        </nz-form-control>
+      </nz-form-item>
+  </form>
+
+  <div style="background: #ECECEC;padding:30px;">
+    <span style="font-size: large;">Shipper</span>
+    <br>
+    <br>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Name</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzValidatingTip="Validating...">
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a person" >
+              <nz-option nzLabel="Allen Campbell" nzValue="jack"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Pickup Date</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a person" >
+              <nz-option nzLabel="0102 truck Freightlliner" nzValue="jack"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzRequired>Customer</nz-form-label>
+          <nz-form-control [nzSpan]="12">
+            <nz-date-picker [nzFormat]="dateFormat"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>instructions</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+              <input nz-input  placeholder="mobile" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>BOL</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+              <input nz-input  placeholder="mobile" />
+            </nz-form-control>
+          </nz-form-item>
+            
+ </div>

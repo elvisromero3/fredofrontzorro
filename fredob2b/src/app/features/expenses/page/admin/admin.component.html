@@ -1,0 +1,49 @@
+<div nz-row>
+    <button nz-button nzType="primary" (click)="new()">list Categories</button>
+    <nz-divider nzType="vertical"></nz-divider>
+    <button nz-button nzType="primary" (click)="new()">Add Expense</button>
+    <nz-divider nzType="vertical"></nz-divider>
+    <button nz-button nzType="primary" (click)="new()">Add an Expense Category</button>
+    <nz-divider nzType="vertical"></nz-divider>
+    <div nz-col [nzSpan]="6">
+        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+            <input type="text" nz-input placeholder="input search text" />
+          </nz-input-group>
+          <ng-template #suffixIconButton>
+            <button nz-button nzType="primary" nzSearch><span nz-icon nzType="search"></span></button>
+          </ng-template>
+
+    </div>
+
+</div>
+<br>
+<nz-spin [nzSpinning]="isSpinning">
+<nz-table nzSize="small" #expenseTable [nzData]="expenseList" [nzPageSize]="10">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Category</th>
+        <th>Truck</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of expenseTable.data">
+        <td>{{ data.date }}</td>
+        <td>{{ data.category }}</td>
+        <td>{{ data.truck }} </td>
+        <td>{{ data.description }} </td>
+        <td>{{ data.amount }} </td>
+        <td>
+          <a nz-tooltip nzTooltipTitle="detail"><span nz-icon nzType="zoom-in" nzTheme="outline"></span></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-tooltip nzTooltipTitle="edit" (click)="edit(data)" ><span nz-icon nzType="edit" nzTheme="outline"></span></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a  nz-tooltip nzTooltipTitle="delete" (click)="showDeleteConfirm()" ><span nz-icon nzType="delete" nzTheme="outline"></span></a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-spin>
