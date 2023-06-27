@@ -33,9 +33,9 @@ export class LoginComponent implements OnInit  {
   }
 
   submitForm(){
-    // if (this.validateForm.invalid){
-    //   return;
-    // }
+     if (this.validateForm.invalid){
+       return;
+     }
     this.isSpinning = true
     const loginView:LoginViewModel ={
       email: this.validateForm.get('userName')?.value,

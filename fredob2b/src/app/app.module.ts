@@ -33,7 +33,7 @@ registerLocaleData(en);
     ReactiveFormsModule,
     HttpClientModule,
     ApiModule.forRoot({rootUrl: 'https://fredob2bapi.azurewebsites.net'}),
-   // ApiModule.forRoot({rootUrl: 'http://localhost:11430'}),
+    //ApiModule.forRoot({rootUrl: 'http://localhost:11430'}),
     BrowserAnimationsModule,
     IconsProviderModule,
     NgZorroAntdModule,

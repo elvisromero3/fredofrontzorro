@@ -1,5 +1,6 @@
 export { CategoryService } from './services/category.service';
 export { CustomerService } from './services/customer.service';
+export { ExpenseService } from './services/expense.service';
 export { MonitorAgentService } from './services/monitor-agent.service';
 export { OrderService } from './services/order.service';
 export { ProductService } from './services/product.service';

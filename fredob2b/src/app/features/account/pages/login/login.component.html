@@ -1,8 +1,5 @@
-
-<nz-spin [nzSpinning]="isSpinning">
-
   <nz-card>
- 
+    <nz-spin [nzSpinning]="isSpinning">
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()" autocomplete="off" >
         <nz-form-item>
         <nz-form-control nzErrorTip="Please input your username!">
@@ -15,12 +12,11 @@
         
           </nz-form-control>
         </nz-form-item>
-   
-        <button nz-button class="login-form-button login-form-margin" nzType="primary" >Log in</button>
-      
+       <button nz-button class="login-form-button login-form-margin" nzType="primary" >Log in</button>
     </form>
-  </nz-card>
-</nz-spin>
+  </nz-spin>
+</nz-card>
+
 
   
 

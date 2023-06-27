@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { CreateComponent } from '../create/create.component';
+import { ExpenseService } from 'src/app/services/api/fredob2b/services';
+import { ExpenseDto } from 'src/app/services/api/fredob2b/models';
 
 
 interface Expense {
@@ -18,36 +20,26 @@ interface Expense {
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
-export class AdminComponent {
-   isSpinning:boolean= false;
-    expenseList:Expense[]=[
-      {
-        date: '01/11/12',
-        category: 'Fuel',
-        truck: '0102 truck Freightliner',
-        description: '',
-        amount: '$700'
-      },
-      {
-        date: '12/05/11',
-        category: 'Office',
-        truck: '0102 truck Freightliner',
-        description: 'sample',
-        amount: '$8000.00'
-      },
-      {
-        date: '10/20/11',
-        category: 'Insurance',
-        truck: '0102 truck Freightliner',
-        description: 'liability insurancee',
-        amount: '$1400.00'
-      }
-    ]
+export class AdminComponent implements OnInit {
+    isSpinning:boolean= false;
+    expenseList:ExpenseDto[]=[];
 
     constructor(
+          private expenseService: ExpenseService, 
           private drawerService: NzDrawerService,
           private modal: NzModalService
     ){}
+
+    ngOnInit(): void {
+      
+    }   
+    getData(): void {
+      this.expenseService.apiExpenseGet$Json()
+      .subscribe(resp => {
+        this.expenseList = resp;
+        this.isSpinning = false;
+      })
+    }
 
     new(): void {
       const drawerRef = this.drawerService.create<CreateComponent, { value: string }, string>({
@@ -61,10 +53,10 @@ export class AdminComponent {
         }
       });
       drawerRef.afterClose.subscribe(() => {
-       // this.getData();
+       this.getData();
       });
     }
-    edit(data: Expense): void {
+    edit(data: ExpenseDto): void {
       console.log(data);
       const drawerRef = this.drawerService.create<CreateComponent, { value: string }, string>({
         nzTitle: 'Edit Product',
@@ -72,11 +64,11 @@ export class AdminComponent {
         nzExtra: '',
         nzContent: CreateComponent,
         nzContentParams: {
-         // Id: data.
+          Id: data.id
         }
       });
       drawerRef.afterClose.subscribe(() => {
-       // this.getData();
+        this.getData();
       });
     }
   
