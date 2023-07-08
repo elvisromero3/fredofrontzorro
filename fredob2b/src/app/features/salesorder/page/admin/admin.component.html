@@ -1,5 +1,5 @@
 <button nz-button nzType="primary" (click)="new()">New</button>
-<nz-table nzSize="small" >
+<nz-table nzSize="small" #salesOrderTable [nzData]="salesOrderList" >
     <thead>
       <tr>
         <th>Date</th>
@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of salesOrderList">
+      <tr *ngFor="let data of salesOrderTable.data">
         <td>{{ data.orderDate }}</td>
         <td>{{ data.customerId }}</td>
         <td>{{ data.status }}</td>

@@ -1,6 +1,6 @@
 <button nz-button nzType="primary" (click)="new()">New</button>
 <nz-spin [nzSpinning]="isSpinning">
-<nz-table nzSize="small" >
+<nz-table nzSize="small" #customerTable [nzData]="customerList">
     <thead>
       <tr>
         <th>Name</th>
@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of customerList">
+      <tr *ngFor="let data of customerTable.data">
         <td>{{ data.customerName }}</td>
         <td> {{ data.email }}</td>
         <td> {{ data.phone }}</td>
