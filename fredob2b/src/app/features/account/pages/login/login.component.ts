@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit  {
       email: this.validateForm.get('userName')?.value,
       password: this.validateForm.get('password')?.value
     }
-    console.log("Enviando");
+   
      this.accountService.login(this.validateForm.get('userName')?.value,
               this.validateForm.get('password')?.value).subscribe(resp =>{
                 if(resp?.responseCode == 1 ){
