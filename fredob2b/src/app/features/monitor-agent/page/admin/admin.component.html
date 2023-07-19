@@ -1,4 +1,4 @@
-<nz-table nzSize="small">
+<nz-table nzSize="small" #monitorTable [nzData]="monitorList">
     <thead>
       <tr>
         <th>Name</th>
@@ -7,7 +7,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of monitorList">
+      <tr *ngFor="let data of monitorTable.data">
         <td>{{ data.monitorDescription}}</td>
         <td> {{ data.monitorLog }}</td>
         <td>

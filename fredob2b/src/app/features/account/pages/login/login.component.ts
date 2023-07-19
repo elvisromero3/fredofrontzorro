@@ -44,18 +44,16 @@ export class LoginComponent implements OnInit  {
     console.log("Enviando");
      this.accountService.login(this.validateForm.get('userName')?.value,
               this.validateForm.get('password')?.value).subscribe(resp =>{
-
                 if(resp?.responseCode == 1 ){
                   this.router.navigate(['dashboard']);
                
                 }else if(resp?.responseCode == 2){
-
-
                 }
 
-
-                this.isSpinning = false
-              
+                if(resp != null){
+                  this.isSpinning = false
+               }
+                
               }) 
                 
               

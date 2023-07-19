@@ -46,12 +46,10 @@ export class AuthService {
       password: password
     }
 
-      this.userService.apiUserLoginPost$Json({body: loginView})
+    this.userService.apiUserLoginPost$Json({body: loginView})
         .pipe(first())
         .subscribe(resp =>{
           const value:any = resp;
-          console.log("Value:", value);
-          
           const userAuth:AccountDto = {
             responseCode: value.responseCode,
             responseMenssage: value.responseMessage,
@@ -65,10 +63,10 @@ export class AuthService {
           }
           this.accountSubject.next(userAuth);
           console.log(userAuth);
+          
         }
       );
-    return this.accountSubject ;
-    
+    return this.accountSubject;   
   }
 
   signOut(){
