@@ -40,6 +40,10 @@ const routes: Routes = [
       {
         path:'expenses',
         loadChildren:() => import('./features/expenses/expenses.module').then(m => m.ExpensesModule)
+      },
+      {
+        path:'shop',
+        loadChildren:() => import('./features/shop/shop.module').then(m => m.ShopModule)
       }
     ]},
   { path: 'account', component:AuthLayoutComponent, loadChildren:() => import('./features/account/account.module').then(m => m.AccountModule) },

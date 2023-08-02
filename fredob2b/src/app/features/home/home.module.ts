@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MasterComponent } from './pages/master/master.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { NgZorroAntdModule } from 'src/app/shared/ng-zorro-antd/ng-zorro-antd.module';
-
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,8 @@ import { NgZorroAntdModule } from 'src/app/shared/ng-zorro-antd/ng-zorro-antd.mo
   imports: [
     CommonModule,
     NgZorroAntdModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    HighchartsChartModule
   ]
 })
 export class HomeModule { }

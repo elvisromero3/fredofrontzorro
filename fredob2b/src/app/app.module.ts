@@ -17,6 +17,7 @@ import { ContentLayoutComponent } from './layout/content-layout/content-layout.c
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { AuthGuard } from './shared/auth.guard';
 import { ApiHeaderInterceptor } from './shared/api-header.interceptor';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 registerLocaleData(en);
 
@@ -37,6 +38,7 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     IconsProviderModule,
     NgZorroAntdModule,
+    HighchartsChartModule
   
   ],
   providers: [
