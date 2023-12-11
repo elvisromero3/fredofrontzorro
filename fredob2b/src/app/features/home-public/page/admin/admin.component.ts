@@ -76,14 +76,11 @@ export class AdminComponent implements OnInit {
        ///DELETE PRODUCT 
        this.shopingCardBasketService$.getnotifiDeleteProduct().subscribe(resp =>
         {
-          console.log("DETECTADO");
-          console.log(resp);
+
           this.deleteProductShopingCard(resp);
         })
 
         this.notificationEventService.subscribeEvent().subscribe(resp => {
-          console.log("Notifiaccion");
-          console.log(resp);
 
           this.shopingCardServices.apiShopingCardProductByNameNameGet$Json({name: resp?.data})
             .subscribe(resp => {
@@ -98,7 +95,7 @@ export class AdminComponent implements OnInit {
     this.shopingCardServices.apiShopingCardCategoriesGet$Json()
     .subscribe(resp => {
       this.categories = resp;
-      console.log(this.categories);
+
      
     });
   }
@@ -108,7 +105,7 @@ export class AdminComponent implements OnInit {
     .subscribe(resp => {
       this.productList = resp;
       this.productCount = this.productList.length;
-      console.log(this.productList); 
+ 
       this.contentLoaded = false;
     })
   }
@@ -118,7 +115,7 @@ export class AdminComponent implements OnInit {
     this.shopingCardServices.apiShopingCardGet$Json()
     .subscribe(resp => {
       this.shopingCardSummary = resp;
-      console.log(resp);
+   
        const shopingcarDetail: ShopingCardBasket ={
         products: resp.products!,
          cardSubTotal: resp.cardSubTotal!,
@@ -136,36 +133,34 @@ export class AdminComponent implements OnInit {
 
 
   changeCategory(categoryItem: any){
-    console.log("CambioCategoria");
-    console.log(categoryItem);
+
     this.shopingCardServices.apiShopingCardProductByCategoryIdIdGet$Json({id: categoryItem.id })
     .subscribe(resp => {
       this.productList = resp;
       this.productCount = this.productList.length;
-      console.log(this.productList);
+      
     })
   }
 
   addProductShopingCard(productitem:any){
-    console.log("Add product");
-    console.log(productitem);
+
    const addproductItem: ShopingCardAddViewModel = {
     productId:productitem.id,
     quantity:1
    };
     this.shopingCardServices.apiShopingCardPost$Json({body: addproductItem})
       .subscribe(resp => {
-        console.log("Listo Agregado");
+       
         this.getShopingCardDetail();
        
       })
   }
 
   deleteProductShopingCard(id: number){
-    console.log(`DELete ${id}`);
+  
     this.shopingCardServices.apiShopingCardIdDelete({id: id})
       .subscribe(reps => {
-        console.log(reps);
+     
   
         this.getShopingCardDetail();
       })

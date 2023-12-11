@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private _shopingCardService: ShopingCardBasketService){
     this._shopingCardService.getShopingCardDetail().subscribe(cardDetail =>{
-      console.log(cardDetail);
+   
       this.shopingCardBasket = cardDetail;
 
       
@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("Header Component");
+   
   }
   
   // @HostListener('document:click')

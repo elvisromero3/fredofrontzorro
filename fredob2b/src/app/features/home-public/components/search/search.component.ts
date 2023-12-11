@@ -28,8 +28,6 @@ onSearchFocusEvent(event: any){
 searchProduct(text: string){
  // console.log("Buscando Producto");
   if(text){
-    console.log("Buscando Producto 2");
-    console.log(text);
 
     const term:ShopingCardEvents ={
       eventName : 'search',

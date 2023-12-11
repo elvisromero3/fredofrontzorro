@@ -13,7 +13,7 @@ export class DropcartComponent {
   
   constructor(private _shopingCardService: ShopingCardBasketService){
     this._shopingCardService.getShopingCardDetail().subscribe(cardDetail =>{
-      console.log(cardDetail);
+     
       this.shopingCardBasket = cardDetail;
      }
   )

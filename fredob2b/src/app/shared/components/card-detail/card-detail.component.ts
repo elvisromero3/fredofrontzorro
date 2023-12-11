@@ -24,7 +24,7 @@ export class CardDetailComponent implements OnInit {
   }
   ngOnInit(): void {
     this._shopingCardService.getShopingCardDetail().subscribe(cardDetail =>{
-      console.log(cardDetail?.products);
+   
       this.productList = cardDetail?.products;
       this.shopingCardBasket = cardDetail;
      })

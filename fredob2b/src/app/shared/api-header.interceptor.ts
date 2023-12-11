@@ -15,7 +15,7 @@ export class ApiHeaderInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const account = this.accountService.accountValue;
-    console.log("Interceptor", account);
+  
     if (account?.responseCode == 1){
       request = request.clone({
         setHeaders: { Authorization: `Bearer ${account.token}` }

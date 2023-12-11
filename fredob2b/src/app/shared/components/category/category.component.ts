@@ -20,7 +20,7 @@ export class CategoryComponent  {
 onClickCategory(category:CategoryDto){
   this.selectedCategory = category.id!;
   this.selectCategoryEvent.emit(category)
-  console.log(category);
+ 
 }
 
 }
