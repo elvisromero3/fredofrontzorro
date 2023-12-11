@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzDrawerRef } from 'ng-zorro-antd/drawer';
 import { Subscription } from 'rxjs';
-import { CreateCategoryRequest } from 'src/app/services/api/fredob2b/models';
+import { CreateCategoryRequest, UpdateCategoryRequest } from 'src/app/services/api/fredob2b/models';
 import { CategoryService } from 'src/app/services/api/fredob2b/services';
 
 @Component({
@@ -55,7 +55,16 @@ export class CreateComponent implements OnInit {
         this.drawerRef.close();
       });
       }else {
-        
+        const updateCategory: UpdateCategoryRequest ={
+          id: this.Id,
+          description: this.validateForm.get('description')?.value,
+          categoryName: this.validateForm.get('categoryName')?.value
+        }
+
+        this.categoryService.apiCategoryIdPut$Json({id: this.Id as number, body: updateCategory })
+          .subscribe( resp => {
+            this.drawerRef.close();
+          })
       }
       
 

@@ -518,4 +518,105 @@ export class UserService extends BaseService {
     );
   }
 
+  /**
+   * Path part for operation apiUserAnonymousPost
+   */
+  static readonly ApiUserAnonymousPostPath = '/api/User/Anonymous';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserAnonymousPost$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserAnonymousPost$Plain$Response(params?: {
+    sessionId?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<string>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserAnonymousPostPath, 'post');
+    if (params) {
+      rb.query('sessionId', params.sessionId, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<string>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserAnonymousPost$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserAnonymousPost$Plain(params?: {
+    sessionId?: string;
+  },
+  context?: HttpContext
+
+): Observable<string> {
+
+    return this.apiUserAnonymousPost$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<string>) => r.body as string)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserAnonymousPost$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserAnonymousPost$Json$Response(params?: {
+    sessionId?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<string>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserAnonymousPostPath, 'post');
+    if (params) {
+      rb.query('sessionId', params.sessionId, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<string>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserAnonymousPost$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserAnonymousPost$Json(params?: {
+    sessionId?: string;
+  },
+  context?: HttpContext
+
+): Observable<string> {
+
+    return this.apiUserAnonymousPost$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<string>) => r.body as string)
+    );
+  }
+
 }

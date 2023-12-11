@@ -68,6 +68,7 @@ export class CreateComponent implements OnInit {
           unitPrice: this.validateForm.get('unitPrice')?.value,
           unitsInStock: 0,
           unitsOnOrder: 0,
+          imageName:""
         }
 
         this.productService.apiProductPost$Json({body: createProductRequest})
@@ -93,6 +94,7 @@ export class CreateComponent implements OnInit {
           unitPrice: this.validateForm.get('unitPrice')?.value,
           unitsInStock: 0,
           unitsOnOrder: 0,
+          imageName:""
         }
         this.productService.apiProductIdPut$Json({id:this.Id as number,body: updateProductRequest})
           .subscribe(resp => {

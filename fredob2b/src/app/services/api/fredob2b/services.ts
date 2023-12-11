@@ -4,6 +4,7 @@ export { ExpenseService } from './services/expense.service';
 export { MonitorAgentService } from './services/monitor-agent.service';
 export { OrderService } from './services/order.service';
 export { ProductService } from './services/product.service';
+export { ShopingCardService } from './services/shoping-card.service';
+export { StorageService } from './services/storage.service';
 export { UploadService } from './services/upload.service';
 export { UserService } from './services/user.service';
-export { ValuesService } from './services/values.service';

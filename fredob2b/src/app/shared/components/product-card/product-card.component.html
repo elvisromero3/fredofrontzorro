@@ -1,14 +1,140 @@
-<!-- <nz-card style="width:200px;" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
-    <nz-card-meta
-      nzTitle="Card title"
-      nzDescription="This is the description"
-      [nzAvatar]="avatarTemplate"
-    ></nz-card-meta>
-  </nz-card> -->
-  <div class="product-card-item">
+   <div class="product-card">
+      <div class="product-card__actions-list">
+        <!-- <button type="button" class="product-card__action product-card__action--quickview" aria-label="Quick view">
+          
+            <svg _ngcontent-serverApp-c19="" width="16" height="16" class="ng-star-inserted">
+              <path _ngcontent-serverApp-c19="" d="M14,15h-4v-2h3v-3h2v4C15,14.6,14.6,15,14,15z M13,3h-3V1h4c0.6,0,1,0.4,1,1v4h-2V3z M6,3H3v3H1V2c0-0.6,0.4-1,1-1h4V3z
+                M3,13h3v2H2c-0.6,0-1-0.4-1-1v-4h2V13z">
+              </path>
+            </svg>
+          
+        </button>
+        <button type="button" class="product-card__action product-card__action--wishlist ng-star-inserted" aria-label="Add to wishlist">
+          
+            <svg width="16" height="16" class="ng-star-inserted">
+              <path _ngcontent-serverApp-c19="" d="M13.9,8.4l-5.4,5.4c-0.3,0.3-0.7,0.3-1,0L2.1,8.4c-1.5-1.5-1.5-3.8,0-5.3C2.8,2.4,3.8,2,4.8,2s1.9,0.4,2.6,1.1L8,3.7
+              l0.6-0.6C9.3,2.4,10.3,2,11.3,2c1,0,1.9,0.4,2.6,1.1C15.4,4.6,15.4,6.9,13.9,8.4z">
+              </path>
+            </svg>
+          
+        </button>
+        <button type="button" class="product-card__action product-card__action--compare ng-star-inserted" aria-label="Add to compare">
+          
+            <svg width="16" height="16" class="ng-star-inserted">
+              <path d="M9,15H7c-0.6,0-1-0.4-1-1V2c0-0.6,0.4-1,1-1h2c0.6,0,1,0.4,1,1v12C10,14.6,9.6,15,9,15z"></path>
+              <path d="M1,9h2c0.6,0,1,0.4,1,1v4c0,0.6-0.4,1-1,1H1c-0.6,0-1-0.4-1-1v-4C0,9.4,0.4,9,1,9z"></path>
+              <path d="M15,5h-2c-0.6,0-1,0.4-1,1v8c0,0.6,0.4,1,1,1h2c0.6,0,1-0.4,1-1V6C16,5.4,15.6,5,15,5z"></path>
+            </svg>
+          
+        </button> -->
+      </div>
+      <div class="product-card__image">
+        <div class="image--type--product">
+         
+          <a class="image__body" routerLink="/home/productfull">
+            <img alt="" class="image__tag" src="{{'https://stfredodev001.blob.core.windows.net/web/' + product!.imageName }}">
+          </a>
+        </div>
+      </div>
+      <div class="product-card__info">
+        <div class="product-card__meta ng-star-inserted">
+          <span class="product-card__meta-title">SKU:</span> {{product!.productCode}} 
+        </div>
+        <div class="product-card__name">
+          <div >
+            <!-- <div class="product-card__badges ng-star-inserted">
+              <div class="tag-badge tag-badge--sale ng-star-inserted">sale</div>
+              <div class="tag-badge tag-badge--new ng-star-inserted">new</div>
+              <div class="tag-badge tag-badge--hot ng-star-inserted">hot</div>
+            </div> -->
+            <a routerLink="/home/productfull">{{product!.productName}}</a>
+          </div>
+        </div>
+        <!-- <div class="product-card__rating">
+          <div class="product-card__rating-stars rating">
+            <div class="rating__body">
+              <div class="rating__star rating__star--active ng-star-inserted"></div>
+              <div class="rating__star rating__star--active ng-star-inserted"></div>
+              <div class="rating__star rating__star--active ng-star-inserted"></div>
+              <div class="rating__star rating__star--active ng-star-inserted"></div>
+              <div class="rating__star ng-star-inserted"></div>
+            </div>
+          </div>
+          <div class="product-card__rating-label"> 3 reviews </div>
+        </div> -->
+        <!-- <div class="product-card__features ng-star-inserted">
+          <ul>
+            <li class="ng-star-inserted"> Speed:  750 RPM </li>
+            <li class="ng-star-inserted"> Power Source:  Cordless-Electric</li>
+            <li class="ng-star-inserted"> Battery Cell Type:  Lithium </li>
+            <li class="ng-star-inserted"> Voltage:  20 Volts </li>
+            <li class="ng-star-inserted"> Battery Capacity:  2 Ah </li>
+          </ul>
+        </div> -->
+      </div>
+      <div class="product-card__footer">
+        <div class="product-card__prices">
+          <div class="product-card__price product-card__price--current">${{product!.unitPrice}}</div>
+        </div>
+        <button type="button"
+                class="product-card__addtocart-icon ng-star-inserted" 
+                (click)="onClickProduct(product)"
+                aria-label="Add to cart">
+          <!-- <app-icon icon="cart-20" > -->
+            <svg width="20" height="20" class="ng-star-inserted">
+              <circle  cx="7" cy="17" r="2"></circle>
+              <circle  cx="15" cy="17" r="2"></circle>
+              <path d="M20,4.4V5l-1.8,6.3c-0.1,0.4-0.5,0.7-1,0.7H6.7c-0.4,0-0.8-0.3-1-0.7L3.3,3.9C3.1,3.3,2.6,3,2.1,3H0.4C0.2,3,0,2.8,0,2.6
+              V1.4C0,1.2,0.2,1,0.4,1h2.5c1,0,1.8,0.6,2.1,1.6L5.1,3l2.3,6.8c0,0.1,0.2,0.2,0.3,0.2h8.6c0.1,0,0.3-0.1,0.3-0.2l1.3-4.4
+              C17.9,5.2,17.7,5,17.5,5H9.4C9.2,5,9,4.8,9,4.6V3.4C9,3.2,9.2,3,9.4,3h9.2C19.4,3,20,3.6,20,4.4z">
+              </path>
+            </svg>
+          <!-- </app-icon> -->
+        </button>
+        <button type="button" class="product-card__addtocart-full ng-star-inserted" > Add to cart </button>
+        <button type="button" class="product-card__wishlist ng-star-inserted">
+          <!-- <app-icon  icon="wishlist-16" > -->
+            <svg  width="16" height="16" class="ng-star-inserted">
+              <path  d="M13.9,8.4l-5.4,5.4c-0.3,0.3-0.7,0.3-1,0L2.1,8.4c-1.5-1.5-1.5-3.8,0-5.3C2.8,2.4,3.8,2,4.8,2s1.9,0.4,2.6,1.1L8,3.7
+              l0.6-0.6C9.3,2.4,10.3,2,11.3,2c1,0,1.9,0.4,2.6,1.1C15.4,4.6,15.4,6.9,13.9,8.4z">
+              </path>
+            </svg>
+          <!-- </app-icon> -->
+          <span >Add to wishlist</span>
+        </button>
+        <button type="button" class="product-card__compare ng-star-inserted">
+          <!-- <app-icon icon="compare-16" > -->
+            <svg width="16" height="16" class="ng-star-inserted">
+              <path d="M9,15H7c-0.6,0-1-0.4-1-1V2c0-0.6,0.4-1,1-1h2c0.6,0,1,0.4,1,1v12C10,14.6,9.6,15,9,15z"></path>
+              <path d="M1,9h2c0.6,0,1,0.4,1,1v4c0,0.6-0.4,1-1,1H1c-0.6,0-1-0.4-1-1v-4C0,9.4,0.4,9,1,9z"></path>
+              <path d="M15,5h-2c-0.6,0-1,0.4-1,1v8c0,0.6,0.4,1,1,1h2c0.6,0,1-0.4,1-1V6C16,5.4,15.6,5,15,5z"></path>
+            </svg>
+          <!-- </app-icon> -->
+          <span >Add to compare</span>
+        </button>
+      </div>
+    </div>
+ 
+  <!-- <div class="product-card-item">
+    <div class="product-card__badges" >
+
+    </div>
     <img nz-image width="200px;" height="200px" nzSrc="https://red-parts.angular.themeforest.scompiler.ru/themes/red/assets/images/products/product-6-1.jpg" [nzFallback]="fallback" alt="" />
-
-
+    <div class="product-card__code">
+      <span>{{ product!.productCode }}</span>
+    </div>
+    <div class="product-card__name">
+      <span>{{ product!.productName }}</span>
+    </div>
+    <div class="product-card__footer">
+      <div class="product-card__prices">
+        <span>$.:</span>
+        <span>{{ product!.unitPrice}}</span>
+      </div>
+      <button type="button" class="product-card__addtocart-icon">
+        <span nz-icon nzType="plus-circle" nzTheme="fill" style="font-size: 28px;"></span> 
+      </button>
+    </div>  
   </div>
   <ng-template #avatarTemplate>
     <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
@@ -24,4 +150,4 @@
   </ng-template>
   <ng-template #actionEllipsis>
     <span nz-icon nzType="ellipsis"></span>
-  </ng-template>
+  </ng-template> -->

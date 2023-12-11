@@ -2,3 +2,29 @@
     margin: 8px;
     width: 200px;
 }
+
+.layout-switcher__button {
+    padding: 7px;
+    margin: 0;
+    border: none;
+    display: block;
+    border-radius: 2px;
+    background-color: transparent;
+    color: #95a0a6;
+    cursor: pointer;
+}
+
+.layout-switcher__list {
+    display: flex;
+}
+
+.view-options__body {
+    padding: .75rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+   // position: relative;
+   // margin-top: -8px;
+   justify-content:flex-end;
+   box-shadow: 0 1px 3px #00000017;
+}

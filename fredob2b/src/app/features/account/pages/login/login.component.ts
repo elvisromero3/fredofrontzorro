@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit  {
   }
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-       userName: [null, [Validators.required]],
-       password: [null, [Validators.required]]
-     
+    userName: [null, [Validators.required]],
+    password: [null, [Validators.required]]
+
     });
   }
 
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit  {
      this.accountService.login(this.validateForm.get('userName')?.value,
               this.validateForm.get('password')?.value).subscribe(resp =>{
                 if(resp?.responseCode == 1 ){
-                  this.router.navigate(['dashboard']);
+                  this.router.navigate(['/portal/dashboard']);
                
                 }else if(resp?.responseCode == 2){
                 }

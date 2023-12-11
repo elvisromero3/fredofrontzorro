@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, first, of } from 'rxjs';
 import { LoginViewModel, ResponseCode } from 'src/app/services/api/fredob2b/models';
-import { UserService, ValuesService } from 'src/app/services/api/fredob2b/services';
+import { UserService } from 'src/app/services/api/fredob2b/services';
 import { AccountDto } from '../models/Account';
 
 @Injectable({
@@ -40,6 +40,7 @@ export class AuthService {
   }
 
 
+
   login(username: string, password:string) {
     const loginView:LoginViewModel ={
       email: username,
@@ -62,7 +63,7 @@ export class AuthService {
             roles: value.dataSet?.roles
           }
           this.accountSubject.next(userAuth);
-          console.log(userAuth);
+         // console.log(userAuth);
           
         }
       );
@@ -74,6 +75,10 @@ export class AuthService {
     localStorage.removeItem('user');
     this.router.navigate(['account']);
 
+  }
+  updateAccount(account: AccountDto){
+    this.accountSubject.next(account);
+    console.log('Actualziando');
   }
 }
 

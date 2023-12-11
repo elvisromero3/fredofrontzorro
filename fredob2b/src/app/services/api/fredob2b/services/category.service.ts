@@ -11,6 +11,7 @@ import { map, filter } from 'rxjs/operators';
 
 import { CategoryDto } from '../models/category-dto';
 import { CreateCategoryRequest } from '../models/create-category-request';
+import { UpdateCategoryRequest } from '../models/update-category-request';
 
 @Injectable({
   providedIn: 'root',
@@ -327,17 +328,17 @@ export class CategoryService extends BaseService {
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiCategoryIdPut()` instead.
+   * To access only the response body, use `apiCategoryIdPut$Plain()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiCategoryIdPut$Response(params: {
+  apiCategoryIdPut$Plain$Response(params: {
     id: number;
-    body?: string
+    body?: UpdateCategoryRequest
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<CategoryDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, CategoryService.ApiCategoryIdPutPath, 'put');
     if (params) {
@@ -347,32 +348,83 @@ export class CategoryService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
+      accept: 'text/plain',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<CategoryDto>;
       })
     );
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiCategoryIdPut$Response()` instead.
+   * To access the full response (for headers, for example), `apiCategoryIdPut$Plain$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiCategoryIdPut(params: {
+  apiCategoryIdPut$Plain(params: {
     id: number;
-    body?: string
+    body?: UpdateCategoryRequest
   },
   context?: HttpContext
 
-): Observable<void> {
+): Observable<CategoryDto> {
 
-    return this.apiCategoryIdPut$Response(params,context).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.apiCategoryIdPut$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<CategoryDto>) => r.body as CategoryDto)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCategoryIdPut$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCategoryIdPut$Json$Response(params: {
+    id: number;
+    body?: UpdateCategoryRequest
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<CategoryDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, CategoryService.ApiCategoryIdPutPath, 'put');
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<CategoryDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCategoryIdPut$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCategoryIdPut$Json(params: {
+    id: number;
+    body?: UpdateCategoryRequest
+  },
+  context?: HttpContext
+
+): Observable<CategoryDto> {
+
+    return this.apiCategoryIdPut$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<CategoryDto>) => r.body as CategoryDto)
     );
   }
 

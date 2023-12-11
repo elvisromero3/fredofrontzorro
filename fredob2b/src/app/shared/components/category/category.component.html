@@ -1,0 +1,33 @@
+<div class="widget-filters__item">
+
+    <div class="filter__body">
+        <div class="filter__container">
+
+
+            <div class="filter-category">
+                <div class="widget__header widget-filters__header">
+                    <h4 >Categories</h4>
+                </div>
+
+                <ul class="filter-category__list">
+                    <li class="filter-category__item filter-category__item--child"
+                         *ngFor="let category of categoriesList"><a (click)="onClickCategory(category)" [ngClass]="selectedCategory == category.id ? 'activate-class' : 'deactivate-class' "  > {{category.categoryName}}</a></li>
+                    <!-- <li class="filter-category__item filter-category__item--parent">
+                        <span class="filter-category__arrow">
+                            <svg width="6" height="9">
+                                <path d="M5.7,8.7L5.7,8.7c-0.4,0.4-0.9,0.4-1.3,0L0,4.5l4.4-4.2c0.4-0.4,0.9-0.3,1.3,0l0,0c0.4,0.4,0.4,1,0,1.3l-3,2.9l3,2.9
+	                C6.1,7.8,6.1,8.4,5.7,8.7z">
+                                </path>
+                            </svg>
+                        </span>
+                        <a href="/themes/red/shop/category/products">All Products</a>
+                    </li> -->
+                    <!-- <li class="filter-category__item filter-category__item--current">
+                        <a href="/themes/red/shop/category/headlights-lighting/products">Headlights &amp; Lighting</a>
+                    </li> -->
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

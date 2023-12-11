@@ -7,6 +7,7 @@ export interface ProductDto {
   createdDate?: string;
   finishedGoodsFlag?: null | string;
   id?: number;
+  imageName?: null | string;
   listPrice?: number;
   modifiedBy?: number;
   modifiedDate?: string;

@@ -10,9 +10,10 @@ import { ExpenseService } from './services/expense.service';
 import { MonitorAgentService } from './services/monitor-agent.service';
 import { OrderService } from './services/order.service';
 import { ProductService } from './services/product.service';
+import { ShopingCardService } from './services/shoping-card.service';
+import { StorageService } from './services/storage.service';
 import { UploadService } from './services/upload.service';
 import { UserService } from './services/user.service';
-import { ValuesService } from './services/values.service';
 
 /**
  * Module that provides all services and configuration.
@@ -28,9 +29,10 @@ import { ValuesService } from './services/values.service';
     MonitorAgentService,
     OrderService,
     ProductService,
+    ShopingCardService,
+    StorageService,
     UploadService,
     UserService,
-    ValuesService,
     ApiConfiguration
   ],
 })

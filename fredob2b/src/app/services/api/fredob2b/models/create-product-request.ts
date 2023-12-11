@@ -4,6 +4,8 @@ export interface CreateProductRequest {
   categoryId?: number;
   color?: null | string;
   finishedGoodsFlag?: null | string;
+  id?: number;
+  imageName?: null | string;
   listPrice?: number;
   productCode?: null | string;
   productName?: null | string;

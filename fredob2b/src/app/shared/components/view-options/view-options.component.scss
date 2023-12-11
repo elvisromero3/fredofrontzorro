@@ -1,0 +1,262 @@
+
+.products-view__options {
+    background-color: #fff;
+    box-shadow: 0 1px 3px #00000017;
+    margin-bottom: 20px
+}
+
+.view-options {
+    font-size: .9375rem;
+    overflow: hidden
+}
+.view-options__body {
+    padding: .75rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+    margin-top: -8px
+}
+
+.view-options__body+.view-options__body {
+    margin-top: 0;
+    border-top: 1px solid #ebebeb
+}
+
+.view-options__body {
+    margin-right: -20px
+}
+
+
+
+.view-options__body--filters {
+    padding: .875rem 1rem
+}
+
+.view-options__label {
+    position: absolute;
+    background: #fff;
+    padding: 0 8px;
+    top: -5px;
+    font-size: 10px;
+    text-transform: uppercase;
+    line-height: 1;
+    color: #999
+}
+
+.view-options__label {
+    left: 50%;
+    transform: translate(-50%)
+}
+
+// [dir=rtl] .view-options__label {
+//     right: 50%;
+//     transform: translate(50%)
+// }
+
+.view-options__filters-button {
+    margin-right: 1.25rem
+}
+
+// [dir=rtl] .view-options__filters-button {
+//     margin-left: 1.25rem
+// }
+
+.view-options__layout {
+    margin-right: 1.25rem
+}
+
+// [dir=rtl] .view-options__layout {
+//     margin-left: 1.25rem
+// }
+
+.view-options__legend {
+    white-space: nowrap
+}
+
+.view-options__spring {
+    flex-grow: 1
+}
+
+.view-options__select {
+    display: flex;
+    align-items: center
+}
+
+.view-options__select>label {
+    margin-bottom: 0;
+    white-space: nowrap
+}
+
+.view-options__select>label {
+    margin-right: 10px
+}
+
+
+
+.view-options__filters-button,
+.view-options__layout,
+.view-options__legend,
+.view-options__spring,
+.view-options__select,
+.view-options__applied-filters {
+    margin-right: 20px
+}
+
+
+
+.view-options__filters-button,
+.view-options__layout,
+.view-options__legend,
+.view-options__select {
+    margin-top: 8px
+}
+
+.filters-button {
+    display: flex;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 2px;
+    font-size: 15px;
+    line-height: 1;
+    align-items: center;
+    color: inherit;
+    font-family: inherit;
+    transition: background-color .12s;
+    padding-top: 7px;
+    padding-bottom: 7px
+}
+
+.filters-button {
+    padding-right: 9px;
+    padding-left: 7px
+}
+
+.filters-button:focus {
+    outline: none
+}
+
+.filters-button:hover {
+    background: #ebebeb
+}
+
+.filters-button:active {
+    background: #e0e0e0
+}
+
+.filters-button__icon {
+    fill: #404040
+}
+
+.filters-button__icon {
+    margin-right: 7px
+}
+
+
+.filters-button__icon svg {
+    display: block
+}
+
+.filters-button__title {
+    padding-top: 1px
+}
+
+.filters-button__counter {
+    background: #e52727;
+    color: #fff;
+    padding: 3px 4px 2px;
+    font-size: 11px;
+    border-radius: 1.5px
+}
+
+.filters-button__counter {
+    margin-left: 6px
+}
+.layout-switcher__list {
+    display: flex
+}
+
+.layout-switcher__button {
+    padding: 7px;
+    margin: 0;
+    border: none;
+    display: block;
+    border-radius: 2px;
+    background-color: transparent;
+    color: #95a0a6
+}
+
+.layout-switcher__button:focus {
+    outline: none
+}
+
+.layout-switcher__button svg {
+    display: block;
+    fill: currentColor
+}
+
+.layout-switcher__button:hover {
+    background-color: #f0f0f0
+}
+
+.layout-switcher__button--active {
+    color: #1890ff
+}
+
+.layout-switcher__button--active:hover {
+    background-color: transparent
+}
+
+
+@media (min-width: 992px) {
+    .view-options--offcanvas--mobile .view-options__filters-button {
+        display: none
+    }
+}
+
+@media (max-width: 991.98px) {
+   .view-options__legend {
+        margin-right: auto
+    }
+
+    .view-options__spring {
+        width: 100%
+    }
+
+    .view-options__select {
+        margin-left: auto
+    }
+
+    .view-options__select+.view-options__select {
+        margin-right: 0
+    }
+}
+
+@media (max-width: 575.98px) {
+    .view-options__body+.view-options__body {
+        margin-top: 2px
+    }
+
+    .view-options__legend {
+        width: 100%;
+        padding-top: 2px
+    }
+
+    .view-options__select {
+        flex-direction: column;
+        align-items: flex-start
+    }
+
+ .view-options__select {
+        margin-right: 0
+    }
+
+    .view-options__select>label {
+        margin: 0 0 2px
+    }
+
+.view-options__layout {
+        margin-left: auto
+    }
+
+}

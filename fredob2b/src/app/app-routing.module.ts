@@ -3,11 +3,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './features/account/pages/login/login.component';
 import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
+import { PublicLayoutComponent} from './layout/public-layout/public-layout.component';
 import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-  {path: '', component:ContentLayoutComponent, canActivate:[AuthGuard],
+ { path: '', pathMatch: 'full', redirectTo: '/home' },
+   {path: 'home', component:PublicLayoutComponent,
+     children: [{
+      path: '',
+       loadChildren:() => import('./features/home-public/home-public.module').then(m => m.HomePublicModule)
+     }]
+
+   },
+
+  {path: 'portal', component:ContentLayoutComponent, canActivate:[AuthGuard],
     children :[
       {
         path:'dashboard',

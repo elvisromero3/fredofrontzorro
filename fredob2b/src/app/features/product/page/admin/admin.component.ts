@@ -30,6 +30,7 @@ export class AdminComponent implements OnInit {
     this.productServices.apiProductGet$Json()
     .subscribe(resp => {
       this.productList = resp;
+      console.log(this.productList);
       this.isSpinning = false;
     });
   }

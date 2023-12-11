@@ -1,0 +1,232 @@
+.dropcart {
+    width: 320px;
+    background-color: #fff;
+    box-shadow: 0 2px 20px rgba(0,0,0,.2);
+    border-radius: 1.5px;
+    padding: 24px;
+    color: #262626;
+
+}
+
+.dropcart__list {
+    list-style: none;
+    padding: 0;
+    margin: -8px 0 0
+}
+
+.dropcart__divider {
+    height: 1px;
+    background: #ebebeb;
+    margin: 8px 0
+}
+
+.dropcart__item {
+    display: -ms-flexbox;
+    display: flex
+}
+
+.dropcart__item-image {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 70px
+}
+
+.dropcart__item-info {
+    padding: 4px 0 5px;
+    margin: 0 10px
+}
+
+.dropcart__item-name {
+    font-size: 15px;
+    line-height: 18px
+}
+
+.dropcart__item-name a {
+    color: inherit;
+    transition: color .2s
+}
+
+.dropcart__item-name a:hover {
+    color: #1890ff
+}
+
+.dropcart__item-features {
+    list-style: none;
+    padding: 0;
+    margin-top: 2px;
+    font-size: 13px;
+    line-height: 17px;
+    color: #6c757d
+}
+
+.dropcart__item-meta {
+    margin-top: 4px
+}
+
+.dropcart__item-meta,.dropcart__item-remove {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.dropcart__item-remove {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    fill: currentColor;
+    background-color: #fff;
+    color: #ccc;
+    margin-right: -13px
+}
+
+.dropcart__item-remove:hover {
+    background-color: #f2f2f2;
+    color: #999;  
+}
+
+.dropcart__item-remove:active {
+    background-color: #ebebeb;
+    color: gray
+}
+
+.dropcart__item-remove:focus {
+    outline: none
+}
+
+.dropcart__item-price,.dropcart__item-quantity {
+    position: relative;
+    height: 16px;
+    z-index: 0;
+    font-size: 11px;
+    padding: 1px 10.82352px 0
+}
+
+.dropcart__item-price:before,.dropcart__item-quantity:before {
+    position: absolute;
+    display: block;
+    content: "";
+    width: calc(100% - 5.82352px);
+    height: 100%;
+    top: 0;
+    z-index: -1;
+    border-radius: 2.5px 3px;
+    left: 0;
+    transform: skewX(-20deg);
+    transform-origin: left bottom
+}
+
+.dropcart__item-quantity {
+    color: #fff;
+    font-weight: 500;
+    padding-left: 6px;
+    margin-right: -2.82352px
+}
+
+@media (-webkit-max-device-pixel-ratio: 1),(max-resolution:1dppx) {
+    .dropcart__item-quantity {
+        font-weight:400
+    }
+}
+
+.dropcart__item-quantity:after,.dropcart__item-quantity:before {
+    background: #1890ff
+}
+
+.dropcart__item-quantity:after {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 8.32352px;
+    height: 100%;
+    top: 0;
+    z-index: -1;
+    left: 0;
+    border-top-left-radius: 2.5px;
+    border-bottom-left-radius: 2.5px
+}
+
+.dropcart__item-price {
+    color: #262626;
+    font-weight: 500
+}
+
+.dropcart__item-price:before {
+    background: #ebebeb
+}
+
+.dropcart__totals {
+    font-size: 15px;
+    margin-top: 18px;
+    margin-bottom: 24px
+}
+
+.dropcart__totals table {
+    width: 100%
+}
+
+.dropcart__totals td,.dropcart__totals th {
+    padding: 0
+}
+
+.dropcart__totals th {
+    font-weight: 500
+}
+
+.dropcart__totals td {
+    text-align: right
+}
+
+.dropcart__totals tr+tr>* {
+    padding-top: 4px
+}
+
+.dropcart__actions {
+    display: -ms-flexbox;
+    display: flex
+}
+
+.dropcart__actions>* {
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.dropcart__actions>*+* {
+    margin-left: 8px
+}
+.btn-secondary, .btn-secondary.disabled, .btn-secondary:disabled {
+    border-color: #f0f0f0;
+    background: #f0f0f0;
+    color: #333;
+}
+.btn {
+    border: none;
+    border-radius: 2px;
+    fill: currentColor;
+    font-weight: 500;
+    text-align: center;
+    vertical-align: middle;
+}
+.btn:not(.btn-icon) {
+    font-size: 16px;
+    line-height: 19px;
+    padding: 8.5px 16px;
+}
+
+
+.btn-primary, .btn-primary.disabled, .btn-primary:disabled {
+    border-color: #1890ff;
+    background: #1890ff;
+    color: #fff;
+}
+
+.image__tag{
+    height: 70px;
+    width: 70px;
+}

@@ -10,12 +10,13 @@ import { ProductCardComponent } from 'src/app/shared/components/product-card/pro
 @NgModule({
   declarations: [
     ShopListComponent,
-    ProductCardComponent
+  //  ProductCardComponent
   ],
   imports: [
     CommonModule,
     ShopRoutingModule,
     NgZorroAntdModule,
+    ProductCardComponent
 
   ]
 })
