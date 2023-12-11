@@ -6,14 +6,12 @@ import { CardDetailComponent } from 'src/app/shared/components/card-detail/card-
 import { MasterComponent } from './page/master/master.component';
 import { CheckoutBlockComponent } from './page/checkout-block/checkout-block.component';
 const routes: Routes = [
-  
   {
-    path: '', component: MasterComponent,
+    path: '', 
     children :[
-      { path: '', redirectTo: 'shop', pathMatch: 'full' },
-       {
-       path: 'shop', component:AdminComponent 
-       },
+      {
+        path: 'shop', component:AdminComponent 
+      },
       {
         path: 'productfull/:id', component: ProductFullComponent
       },
@@ -22,9 +20,12 @@ const routes: Routes = [
       },
       {
         path: 'checkout', component: CheckoutBlockComponent
+      },
+      {
+        path: '**',redirectTo:'shop'  
       }
     ]
-  },
+  }
   
 ];
 

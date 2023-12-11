@@ -5,16 +5,17 @@ import { ContentLayoutComponent } from './layout/content-layout/content-layout.c
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { PublicLayoutComponent} from './layout/public-layout/public-layout.component';
 import { AuthGuard } from './shared/auth.guard';
-
+import { MasterComponent } from './features/home-public/page/master/master.component';
+// {path: 'home', component:PublicLayoutComponent,
 const routes: Routes = [
- { path: '', pathMatch: 'full', redirectTo: '/home' },
-   {path: 'home', component:PublicLayoutComponent,
-     children: [{
-      path: '',
-       loadChildren:() => import('./features/home-public/home-public.module').then(m => m.HomePublicModule)
-     }]
 
-   },
+ 
+   {
+    path: 'home',
+    component:MasterComponent,
+    loadChildren:() => import('./features/home-public/home-public.module').then(m => m.HomePublicModule)
+   }
+   ,
 
   {path: 'portal', component:ContentLayoutComponent, canActivate:[AuthGuard],
     children :[
@@ -56,6 +57,10 @@ const routes: Routes = [
       }
     ]},
   { path: 'account', component:AuthLayoutComponent, loadChildren:() => import('./features/account/account.module').then(m => m.AccountModule) },
+  {
+    path: '', pathMatch:'full' ,  redirectTo: 'home'
+
+   },
  
 ];
 
