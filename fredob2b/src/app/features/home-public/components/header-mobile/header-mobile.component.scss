@@ -333,7 +333,7 @@
 }
 
  .mobile-indicator__counter:before {
-    background-color: #e52727
+    background-color: #1890ff;
 }
 
  .mobile-logo svg {
@@ -341,7 +341,7 @@
 }
 
  .mobile-logo__part-one {
-    fill: #e52727
+    fill:#1890ff;
 }
 
  .mobile-logo__part-two {
@@ -631,7 +631,7 @@
     top: 0;
     right: 0;
     bottom: 0;
-    background-color: #e52727;
+    background-color: #1890ff;
     z-index: -1;
     border-radius: 2.5px
 }
@@ -711,7 +711,7 @@
     width: 5px;
     height: 5px;
     border-radius: 2.5px;
-    background: #e52727;
+    background:#1890ff;
     top: 15px
 }
 
@@ -1054,7 +1054,7 @@
     }
 
      .mobile-search__button--search:hover {
-        color: #e52727
+        color: #1890ff;
     }
 }
 
@@ -1078,7 +1078,7 @@
 
     .mobile-search__input {
         padding-left: 12px;
-        padding-right: 0
+        padding-right: 0;
     }
 
     // [dir=rtl]  .mobile-search__input {
@@ -1087,16 +1087,16 @@
     // }
 
      .mobile-search__button {
-        width: 52px
+        width: 52px;
     }
 
      .mobile-search__button--close {
         border-width: 0;
-        border-style: solid
+        border-style: solid;
     }
 
     .mobile-search__button--close {
-        border-left-width: 1px
+        border-left-width: 1px;
     }
 
     // [dir=rtl]  .mobile-search__button--close {
@@ -1104,27 +1104,27 @@
     // }
 
      .mobile-search__input {
-        color: #262626
+        color: #262626;
     }
 
      .mobile-search__input::placeholder {
-        color: #6c757d
+        color: #6c757d;
     }
 
      .mobile-search__input~.mobile-search__field {
-        background: #fff
+        background: #fff;
     }
 
      .mobile-search__input~.mobile-search__button--close {
-        border-color: #ebebeb
+        border-color: #ebebeb;
     }
 
      .mobile-search__button {
-        color: #b2b2b2
+        color: #b2b2b2;
     }
 
      .mobile-search__button:hover {
-        color: #e52727
+        color: #1890ff;
     }
 
      .mobile-search__vehicle-picker {

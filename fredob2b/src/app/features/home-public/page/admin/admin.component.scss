@@ -605,3 +605,11 @@
     position: relative;
     z-index: 100;
 }
+
+
+@media (max-width: 991.98px) {
+    .sidebar {
+        visibility:hidden;
+        transition: visibility 0s .25s
+    }
+}
