@@ -1,7 +1,7 @@
 # Angular Zorro 
 ## 🎯 Overview
 
-This project is a Angular application using ng-zorro (https://ng.ant.design/docs/introduce/en) adn include higchart (https://www.highcharts.com/)
+This project is a Angular application using ng-zorro (https://ng.ant.design/docs/introduce/en) and include higchart (https://www.highcharts.com/)
 
 ### Key Features
 
